@@ -1,12 +1,17 @@
 from django.shortcuts import render
+from django.views.generic import View
+from .forms import RegistrationForm
 
-from django.views.generic import TemplateView
 
+class RegistrationView(View):
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
 
-class ClientIndex(TemplateView):
-    template_name = "client/index.html"
-
-    def get_context_data(self, **kwargs):
-        kwargs["text"] = "Hello World!!!"
-        return super().get_context_data(**kwargs)
+        request.title = "Ro'yxatdan o'tish"
+    def get(self, request):
+        return render(request, 'client/registration.html', {
+            'form': RegistrationForm()
+        })
+    def post(self, request):
+        pass
 

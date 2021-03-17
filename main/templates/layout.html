@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ishop</title>
+    <title>{{ request.title|default:"Ishop" }}</title>
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" />
     <link rel="stylesheet" href="{% static 'main/main.css' %}" />
@@ -21,8 +21,8 @@
 
             <div class="collapse navbar-collapse" id="id_navbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item{% if request.resolver_match.app_name == 'main' and request.resolver_match.url_name == 'index' %} active{% endif %}">
-                        <a class="nav-link" href="{% url 'main:index' %}">Boshi sahifa</a>
+                    <li class="nav-item{% if crn == 'client:registration' %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'client:registration' %}">Ro'yxatdan o'tish</a>
                     </li>
                 </ul>
             </div>

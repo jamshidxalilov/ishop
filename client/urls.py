@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import ClientIndex
+from .views import RegistrationView
 
 
 app_name='client'
+
 urlpatterns = [
-    path('', ClientIndex.as_view(), name="index"),
+    path('registration/', RegistrationView.as_view(), name="registration"),
 ]
