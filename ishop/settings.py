@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'main',
     'debug_toolbar',
     'crispy_forms',
+    'client',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,5 @@ MESSAGE_TAGS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+AUTH_USER_MODEL = 'client.User'
