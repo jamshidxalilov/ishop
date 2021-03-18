@@ -22,8 +22,11 @@
             <div class="collapse navbar-collapse" id="id_navbar">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
+                        <li class="nav-item{% if crn == 'client:profile' %} active{% endif %}">
+                            <a class="nav-link" href="{% url 'client:profile' %}">{{ user.username }}</a>
+                        </li>
                         <li class="nav-item{% if crn == 'client:logout' %} active{% endif %}">
-                            <a class="nav-link" href="{% url 'client:logout' %}">{{ user.username }}</a>
+                            <a class="nav-link" href="{% url 'client:logout' %}">Chiqish</a>
                         </li>
                     {% else %}
                         <li class="nav-item{% if crn == 'client:registration' %} active{% endif %}">

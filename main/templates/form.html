@@ -7,10 +7,10 @@
         <div class="card">
             <div class="card-header">{{ request.title }}</div>
             <div class="card-body">
-                <form action="{% block url %}{% endblock %}" method="post">
+                <form action="{% block url %}{% endblock %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
-                    <button class="btn btn-primary">{{ request.title }}</button>
+                    <button class="btn btn-primary">{% if request.button_title %}{{ request.button_title }}{% elif request.title %}{{ request.title }}{% else %}{{ "Saqlash" }}{% endif %}</button>
                 </form>
             </div>
         </div>

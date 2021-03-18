@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, ProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -71,5 +71,25 @@ class LogoutView(LoginRequiredMixin, View):
 
 
 class ProfileView(LoginRequiredMixin, View):
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
+
+        request.title = "Profil"
+        request.button_title = "Saqlash"
+
     def get(self, request):
-        pass
+        return render(request, 'client/profile.html', {
+            'form': ProfileForm(instance=request.user)
+        })
+
+    def post(self, request):
+        form = ProfileForm(data=request.POST, files=request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, "Muvaffaqiyatli saqlandi.")
+            return redirect('client:profile')
+
+        return render(request, 'client/profile.html', {
+            'form': form
+        })
