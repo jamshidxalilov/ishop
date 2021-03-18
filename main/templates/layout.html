@@ -21,9 +21,18 @@
 
             <div class="collapse navbar-collapse" id="id_navbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item{% if crn == 'client:registration' %} active{% endif %}">
-                        <a class="nav-link" href="{% url 'client:registration' %}">Ro'yxatdan o'tish</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item{% if crn == 'client:logout' %} active{% endif %}">
+                            <a class="nav-link" href="{% url 'client:logout' %}">{{ user.username }}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item{% if crn == 'client:registration' %} active{% endif %}">
+                            <a class="nav-link" href="{% url 'client:registration' %}">Ro'yxatdan o'tish</a>
+                        </li>
+                        <li class="nav-item{% if crn == 'client:login' %} active{% endif %}">
+                            <a class="nav-link" href="{% url 'client:login' %}">Tizimga kirish</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -49,6 +58,6 @@
 
     <script src="{% static 'vendor/jquery-3.5.1.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'main/js/main.js' %}"></script>
+    <script src="{% static 'main/main.js' %}"></script>
 </body>
 </html>

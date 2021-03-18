@@ -151,3 +151,5 @@ MESSAGE_TAGS = {
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTH_USER_MODEL = 'client.User'
+LOGIN_URL = '/user/login/'
+LOGIN_REDIRECT_URL = '/'

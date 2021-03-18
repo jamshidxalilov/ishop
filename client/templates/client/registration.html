@@ -1,18 +1,3 @@
-{% extends 'layout.html' %}
-{% load crispy_forms_filters %}
+{% extends 'form.html' %}
 
-{% block content %}
-    <div class="row">
-    <div class="col-lg-6 offset-lg-3">
-        <div class="card">
-            <div class="card-header">{{ request.title }}</div>
-            <div class="card-body">
-                <form action="{% url 'client:registration' %}" method="post">
-                    {{ form | crispy }}
-                    <button class="btn btn-primary">{{ request.title }}</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
-{% endblock %}
+{% block url %}{% url 'client:registration' %}{% endblock %}
