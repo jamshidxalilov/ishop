@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
     'debug_toolbar',
     'crispy_forms',
+    'main',
     'client',
+    'cabinet',
+    'adminrestrict'
 ]
 
 MIDDLEWARE = [
@@ -61,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'adminrestrict.middleware.AdminPagesRestrictMiddleware',
+    # 'client.middleware.RestrictStaffToAdminMiddleware',
 ]
 
 ROOT_URLCONF = 'ishop.urls'
