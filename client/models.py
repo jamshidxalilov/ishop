@@ -40,38 +40,3 @@ class User(AbstractUser):
     def image_url(self):
         if self.photo:
             return os.path.join(settings.MEDIA_URL, str(self.photo))
-
-
-
-class Category(models.Model):
-    STATUS_ACTIVE = 1
-    STATUS_INACTIVE = 0
-    admin = models.ForeignKey(User, on_delete=models.RESTRICT, default=None, null=True)
-    parent = models.ForeignKey('client.Category',
-                               verbose_name="Otasi",
-                               on_delete=models.RESTRICT,
-                               null=True,
-                               default=None,
-                               blank=True)
-    name_uz = models.CharField(max_length=50, verbose_name="O'zbekcha")
-    name_ru = models.CharField(max_length=50, verbose_name="Ruscha")
-    status = models.SmallIntegerField( choices=(
-        (STATUS_ACTIVE, 'Faol'),
-        (STATUS_INACTIVE, 'Nofaol')
-    ), default=STATUS_ACTIVE)
-    def __str__(self):
-        return self.name_uz
-    class Meta:
-        verbose_name = 'Kategoriya'
-        verbose_name_plural = 'Kategoriyalar'
-
-
-class Unit(models.Model):
-    name_uz = models.CharField(max_length=50)
-    name_ru = models.CharField(max_length=50)
-
-    def __str__(self):
-        return "Unit: {}".format(self.name_uz)
-    class Meta:
-        verbose_name = "O'lchov birligi"
-        verbose_name_plural = "O'lchov birliklari"
